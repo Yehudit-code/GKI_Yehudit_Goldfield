@@ -5,7 +5,8 @@ interface ProductPageProps {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { id } = params;
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
   const product: Product = await getProductById(id);
 
   return (
@@ -18,6 +19,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
       <p className="text-gray-700 mb-4">{product.description}</p>
       <p className="text-lg font-semibold mb-6">${product.price}</p>
+      <p className="text-lg font-semibold mb-6">{product.category}</p>
       <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
         Add to Cart
       </button>
