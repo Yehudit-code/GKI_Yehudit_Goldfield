@@ -118,7 +118,7 @@ export default function Header() {
     { name: "Womens", href: "/category/women's clothing" },
     { name: "Jewelry", href: "/category/jewelery" },
     { name: "Electronics", href: "/category/electronics" },
-    { name: "Contact Us", href: "/contact" },
+    // { name: "Contact Us", href: "/contact" },
   ];
 
   return (
