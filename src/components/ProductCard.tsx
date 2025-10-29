@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Product } from "@/utils/api";
 
@@ -6,6 +7,9 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const addToCart = () => {
+    console.log(`Added product ${product.id} to cart.`);
+  }
   return (
     <div className="border rounded-xl p-4 shadow hover:shadow-lg transition">
       <img
@@ -21,8 +25,12 @@ export default function ProductCard({ product }: ProductCardProps) {
         href={`/products/${product.id}`}
         className="text-blue-600 text-sm font-medium"
       >
-        View Details →
+      View Details →
       </Link>
+      <br></br>
+      <button onClick={addToCart} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        Add to Cart
+      </button>
     </div>
   );
 }
