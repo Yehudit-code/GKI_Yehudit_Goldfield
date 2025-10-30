@@ -46,7 +46,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </button>
       <button
       onClick={() => setIsFav(!isFav)}
-      className="text-xl transition-colors duration-300"
+      className="text-xl transition-colors duration-300 pd-2 ml-4"
     >
       {isFav ? (
         <FaHeart className="text-red-500" />
