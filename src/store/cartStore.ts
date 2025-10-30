@@ -11,10 +11,11 @@ interface CartState {
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
-  totalItems: number;
-  totalPrice: number;
+  getTotalItems: () => number;
+  getTotalPrice: () => number;
 }
 
+// ✅ פונקציה נפרדת לשליפת cart מה-localStorage
 const getCartFromStorage = (): CartProduct[] => {
   if (typeof window !== "undefined") {
     const stored = localStorage.getItem("cart");
@@ -23,6 +24,7 @@ const getCartFromStorage = (): CartProduct[] => {
   return [];
 };
 
+// ✅ יצירת ה-Store עם פונקציות חישוב
 export const useCartStore = create<CartState>((set, get) => ({
   cart: getCartFromStorage(),
 
@@ -63,11 +65,10 @@ export const useCartStore = create<CartState>((set, get) => ({
     set({ cart: [] });
   },
 
-  get totalItems() {
-    return get().cart.reduce((sum, item) => sum + item.quantity, 0);
-  },
+  // ✅ פונקציות לחישוב ערכים (במקום getter)
+  getTotalItems: () =>
+    get().cart.reduce((sum, item) => sum + item.quantity, 0),
 
-  get totalPrice() {
-    return get().cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  },
+  getTotalPrice: () =>
+    get().cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
 }));
