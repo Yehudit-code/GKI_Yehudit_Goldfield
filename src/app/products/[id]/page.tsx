@@ -24,8 +24,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <p className="text-gray-700 mb-4">{product.description}</p>
       <p className="text-lg font-semibold mb-6">${product.price}</p>
       <p className="text-lg font-semibold mb-6">{product.category}</p>
-      <button  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+      <button  className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
         Add to Cart
+      </button>
+      <button  className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        🤍
       </button>
     </div>
   );

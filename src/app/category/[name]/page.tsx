@@ -6,7 +6,7 @@ interface CategoryPageProps {
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { name } = params; // שם הקטגוריה מה-URL
+  const { name } = await params;
   const products: Product[] = await getProductsByCategory(name);
 
   return (

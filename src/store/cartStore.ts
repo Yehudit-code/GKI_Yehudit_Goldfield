@@ -65,7 +65,6 @@ export const useCartStore = create<CartState>((set, get) => ({
     set({ cart: [] });
   },
 
-  // ✅ פונקציות לחישוב ערכים (במקום getter)
   getTotalItems: () =>
     get().cart.reduce((sum, item) => sum + item.quantity, 0),
 

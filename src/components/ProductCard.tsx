@@ -2,14 +2,16 @@
 import Link from "next/link";
 import { Product } from "@/utils/api";
 import { useCartStore } from "@/store/cartStore"; // ✅ חיבור לזוסטנד
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useState } from "react";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  // נשלוף את הפונקציה מתוך ה־store
   const addToCart = useCartStore((state) => state.addToCart);
+  const [isFav, setIsFav] = useState(false);
 
   const handleAddToCart = () => {
     addToCart(product); // ✅ מוסיף את המוצר לעגלה
@@ -38,10 +40,20 @@ export default function ProductCard({ product }: ProductCardProps) {
       <br />
       <button
         onClick={handleAddToCart}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mt-2"
+        className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 mt-2"
       >
         Add to Cart
       </button>
+      <button
+      onClick={() => setIsFav(!isFav)}
+      className="text-xl transition-colors duration-300"
+    >
+      {isFav ? (
+        <FaHeart className="text-red-500" />
+      ) : (
+        <FaRegHeart className="text-gray-400 hover:text-yellow-400" />
+      )}
+    </button>
     </div>
   );
 }
