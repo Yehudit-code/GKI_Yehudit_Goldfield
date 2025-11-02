@@ -26,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add Google Fonts link here */}
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
           rel="stylesheet"
@@ -34,7 +33,9 @@ export default function RootLayout({
       </head>
       <body className="font-[Inter] antialiased">
         <Header />
-        {children}
+        <div className="pt-[13vh]">
+          {children}
+        </div>
       </body>
     </html>
   );
