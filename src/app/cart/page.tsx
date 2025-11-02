@@ -1,8 +1,16 @@
 "use client";
 import { useCartStore } from "../../store/cartStore";
+import { useRouter } from "next/navigation";
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, clearCart, getTotalItems } = useCartStore();
+  const router = useRouter();
+
+  const handleCheckout = () => {
+    
+    clearCart(); // מנקה את העגלה
+    router.push("/checkout"); // מוביל לדף אישור התשלום
+  };
 
   return (
     <div className="p-8">
@@ -20,16 +28,38 @@ export default function CartPage() {
                 <p>${item.price}</p>
               </div>
               <div className="flex items-center">
-                <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 bg-gray-200">-</button>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  className="px-2 bg-gray-200"
+                >
+                  -
+                </button>
                 <span className="px-2">{item.quantity}</span>
-                <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="px-2 bg-gray-200">+</button>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  className="px-2 bg-gray-200"
+                >
+                  +
+                </button>
               </div>
-              <button onClick={() => removeFromCart(item.id)} className="ml-2 text-red-500">X</button>
+              <button onClick={() => removeFromCart(item.id)} className="ml-2 text-red-500">
+                X
+              </button>
             </div>
           ))}
           <h2 className="text-xl font-bold mt-4">Total: ${getTotalItems().toFixed(2)}</h2>
-          <button className="mt-4 w-full bg-green-500 text-white py-2 rounded">Checkout</button>
-          <button onClick={clearCart} className="mt-2 w-full bg-gray-500 text-white py-2 rounded">Clear Cart</button>
+          <button
+            onClick={handleCheckout}
+            className="mt-4 w-full bg-green-500 text-white py-2 rounded"
+          >
+            Checkout
+          </button>
+          <button
+            onClick={clearCart}
+            className="mt-2 w-full bg-gray-500 text-white py-2 rounded"
+          >
+            Clear Cart
+          </button>
         </>
       )}
     </div>

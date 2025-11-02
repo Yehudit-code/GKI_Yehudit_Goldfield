@@ -15,7 +15,6 @@ interface CartState {
   getTotalPrice: () => number;
 }
 
-// ✅ פונקציה נפרדת לשליפת cart מה-localStorage
 const getCartFromStorage = (): CartProduct[] => {
   if (typeof window !== "undefined") {
     const stored = localStorage.getItem("cart");
